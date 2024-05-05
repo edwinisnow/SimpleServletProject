@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class XmlServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("XMLServlet called");
+		String username = request.getParameter("userName");
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
-		writer.println("<h3>XMLServlet called</h3>");
+		writer.println("Hello" + username);
 	}
 
 }
