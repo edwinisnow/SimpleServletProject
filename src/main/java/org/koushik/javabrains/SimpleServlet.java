@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //	http://localhost:8080/SimpleServletProject/SimpleServletPath
 /**
@@ -24,7 +25,15 @@ public class SimpleServlet extends HttpServlet {
 		System.out.println("Hello from GET method");
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
-		writer.println("<h3>SimpleServlet</h3>");
+		HttpSession session = request.getSession();
+		String userName = request.getParameter("name");
+		if(userName != "" & userName != null) {
+
+			session.setAttribute("savedUserName",userName);
+		}
+		
+		writer.println("Request parameter has username as " + userName);
+		writer.println("Session parameter has username as " + (String) session.getAttribute("savedUserName"));
 	}
 
 }
