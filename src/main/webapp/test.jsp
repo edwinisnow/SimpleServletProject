@@ -13,6 +13,7 @@
 	}
 %>
 <%
+
 int i = 1;
 int j = 2;
 int k;
@@ -23,5 +24,11 @@ k = i + j;
 <h1>Value of k is <%=k%></h1>
 <h1>Sum of 1+2=<%=add(1,2) %></h1>
 <h2>Sum of 2+2=<%=add(2,2) %></h2>
-</body>
+
+<%
+	for (i = 0; i < 5; i++ ){
+%>
+<h1><%=i %></h1>
+
+<% }%>
 </html>
