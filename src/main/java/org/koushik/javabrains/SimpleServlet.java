@@ -3,6 +3,7 @@ package org.koushik.javabrains;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +27,20 @@ public class SimpleServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
+		
+		ServletContext context = request.getServletContext();
 		String userName = request.getParameter("name");
+		
 		if(userName != "" & userName != null) {
-
 			session.setAttribute("savedUserName",userName);
+			context.setAttribute("savedUserName", userName);
 		}
 		
 		writer.println("Request parameter has username as " + userName);
 		writer.println("Session parameter has username as " + (String) session.getAttribute("savedUserName"));
+		writer.println("<br/>");
+		writer.println("Context parameter has username as " + (String) context.getAttribute("savedUserName"));
+		
 	}
 
 }
